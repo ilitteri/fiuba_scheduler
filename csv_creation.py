@@ -19,6 +19,8 @@ classType_re = r'\d{2}:\d{2}:\d{2}\s(\D{1,3})\s'
 classroom_re = r'\s(\d{3})\s'
 vacancies_re = r'\d{2}:\d{2}:\d{2}\s\D{1,3}\s([3-9][0-9])\s'
 day_re = r'\s(Lunes|Martes|Miércoles|Jueves|Viernes)\s'
+professor_re = r'\s([A-Z|Ñ]+,\s[A-Z|Ñ]+)\s'
+subject_re = r'CURSO:\s\d{1,2}\D?\s([A-Z|\s|.]+)\s[A-Z|Ñ]+,\s[A-Z|Ñ]+\s'
 #location_re = r'\s(\D{2})'
 
 def read_pdf(file):
@@ -32,8 +34,8 @@ def read_pdf(file):
                     #analyzeFirstLine(line)
                     first_line = False
                 #print(getDay(days, line))
-                print(re.findall(day_re, line))
-            break
+                print(re.findall(subject_re, line))
+            
 
 def main():
     file = 'schedule.pdf'
