@@ -6,6 +6,12 @@ days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Doming
 
 #line_re = r'(\d{4}) CURSO: (\d{1,2}\w?)'
 
+def getDay(days, line):
+    i = 0
+    while i < len(days) and not days[i] in line:
+        i += 1
+    return -1 if i == len(days) else days[i]
+
 subjectCode_re = r'(\d{4})\s'
 course_re = r'CURSO:\s(\d{1,2}\D?)'
 time_re = r'\d{2}:\d{2}:\d{2}'
@@ -24,7 +30,8 @@ def read_pdf(file):
                 if first_line:
                     #analyzeFirstLine(line)
                     first_line = False
-                print(re.findall(subjectCode_re, line))
+                print(getDay(days, line))
+                #print(re.findall(subjectCode_re, line))
                 #csv.write(','.join(line.split()) + '\n')
             break
 
