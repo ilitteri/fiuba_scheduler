@@ -15,7 +15,7 @@ def readHTML(file):
 
     return header, data
 
-def main(file):
+def getDataFrame(file):
     header, data = readHTML(file)
     data_frame = pd.DataFrame(data, columns = header)
 
