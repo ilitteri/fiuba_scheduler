@@ -1,4 +1,6 @@
 __pycache__
 *.pdf
-#*.csv
-#*.txt
+*.csv
+*.txt
+*.xml
+*.zip
