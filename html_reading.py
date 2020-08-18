@@ -39,10 +39,8 @@ def getHeader(content):
 def getData(content, field_count):
     return [e.getprevious().tail.replace(u'\xa0', ' ').encode('latin-1').decode('utf-8').lstrip('\n') for e in content.xpath('//br')[field_count:]]
 
-def createCSV(name_file, reading):
-    header, data = reading
-    d = pd.DataFrame(data, columns = header)
-    d.to_csv(name_file, index=False, header=True)
+def createCSV(data_frame, name_file, header, data ):
+    data_frame.to_csv(name_file, index=False, header=True)
 
 def readHTML(file):
     with open(file, 'r', encoding='utf-8') as html_file:
@@ -60,7 +58,8 @@ def readHTML(file):
 
 def main():
     file = 'html_files/schedules.html'
-    reading = readHTML(file)
-    createCSV('schedule.csv', reading)
+    header, data  = readHTML(file)
+    data_frame = pd.DataFrame(data, columns = header)
+    createCSV(data_frame, 'schedule.csv', header, data)
 
 main()
