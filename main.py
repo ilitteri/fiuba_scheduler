@@ -2,8 +2,10 @@ import xml_reading
 import csv_creation
 
 def main():
-    file = 'schedule.xml'
-    data_frame = xml_reading.getDataFrame(file)
-    csv_creation.createCSV(data_frame, f'{file[:file.index(".")]}.csv')
+    xml_file = 'schedule.xml'
+    df = xml_reading.getDataFrame(xml_file)
+
+    csv_file = f'{xml_file[:xml_file.index(".")]}.csv'
+    csv_creation.createCSV(df, csv_file)
 
 main()
